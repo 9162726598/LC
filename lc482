@@ -33,3 +33,24 @@ class Solution(object):
         return ans
        
             
+####solution 2:
+先把‘-’都去掉，然后看一共有多少波，每一波把k个character 放进去， 用substring 快很多
+class Solution:
+    def licenseKeyFormatting(self, S: str, K: int) -> str:
+        if not S: return S
+        S=S.replace('-',"").upper()
+        #print(S)
+     
+
+    
+        batch = int(len(S)/K)
+        remainder=len(S)%K
+        cur =""
+        if remainder:
+            cur += S[0: remainder]+'-'
+        for i in range(batch):
+            cur +=S[K*i+remainder: remainder+K*(i+1)] +'-'
+        
+        return cur[:len(cur)-1]
+        
+            
